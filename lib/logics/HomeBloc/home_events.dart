@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 @immutable
 abstract class HomeEvents {}
 
-class FetchFeaturedSeller extends HomeEvents {}
+class FetchHomeData extends HomeEvents {}
 class GetData extends HomeEvents {
   final int? id;
 

@@ -11,7 +11,17 @@ class HomePageInitState extends HomePageState {}
 class HomePageLoading extends HomePageState {}
 class HomePageLoaded extends HomePageState {
   final List<dynamic>? sellerData;
-  HomePageLoaded({this.sellerData});
+  final List<dynamic>? trendingProducts;
+  final List<dynamic>? newArrival;
+  final List<dynamic>? newShops;
+  final List<dynamic>? productsStories;
+
+  HomePageLoaded(
+      {this.trendingProducts,
+      this.newArrival,
+      this.newShops,
+      this.productsStories,
+      this.sellerData});
 }
 class HomePageListError extends HomePageState {
   final error;

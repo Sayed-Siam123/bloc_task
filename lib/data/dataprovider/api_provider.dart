@@ -12,4 +12,29 @@ class ApiProvider{
     Response response = await http.get(uri);
     return jsonDecode(response.body);
   }
+
+  Future<dynamic> fetchTrendingProducts() async {
+    Uri uri = Uri.parse("$_baseUrl&opt=trendingProducts");
+    Response response = await http.get(uri);
+    return jsonDecode(response.body);
+  }
+
+  Future<dynamic> fetchNewArrival() async {
+    Uri uri = Uri.parse("$_baseUrl&opt=newArrivals");
+    Response response = await http.get(uri);
+    return jsonDecode(response.body);
+  }
+
+  Future<dynamic> fetchNewShops() async {
+    Uri uri = Uri.parse("$_baseUrl&opt=newShops");
+    Response response = await http.get(uri);
+    return jsonDecode(response.body);
+  }
+
+  Future<dynamic> fetchProducts() async {
+    Uri uri = Uri.parse("$_baseUrl&opt=stories");
+    Response response = await http.get(uri);
+    return jsonDecode(response.body);
+  }
+
 }

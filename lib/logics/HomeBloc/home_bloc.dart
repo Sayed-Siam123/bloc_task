@@ -13,12 +13,27 @@ class HomeBloc extends Bloc<HomeEvents, HomePageState> {
 
   @override
   Stream<HomePageState> mapEventToState(HomeEvents event) async* {
-    if(event is FetchFeaturedSeller){
+    if(event is FetchHomeData){
       yield HomePageLoading();
       try {
         final sellerData = await apiProvider.fetchFeaturedSeller();
-        print(sellerData);
-        yield HomePageLoaded(sellerData: sellerData[0]);
+        final trendingProducts = await apiProvider.fetchTrendingProducts();
+        final newArrival = await apiProvider.fetchNewArrival();
+        final newShops = await apiProvider.fetchNewShops();
+        final productsStories = await apiProvider.fetchProducts();
+
+        print(trendingProducts[0]);
+        print(newArrival[0]);
+        print(newShops[0]);
+        print(productsStories[0]);
+
+        yield HomePageLoaded(
+            sellerData: sellerData[0],
+            newArrival: newArrival[0],
+            newShops: newShops[0],
+            productsStories: productsStories[0],
+            trendingProducts: trendingProducts[0]);
+
       } on SocketException {
         yield HomePageListError(
           error: NoInternetException('No Internet'),
@@ -37,6 +52,11 @@ class HomeBloc extends Bloc<HomeEvents, HomePageState> {
         );
       }
     }
+
+
+
+
+
     if(event is GetData){
       print(event.id); // to pass id or pass the data to the bloc using event class
     }
