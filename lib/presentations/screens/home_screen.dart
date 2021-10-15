@@ -62,6 +62,18 @@ class _HomeScreenState extends State<HomeScreen> {
                         final sellerData = state.sellerData;
                         final trendingProductsData = state.trendingProducts;
                         final story = state.productsStories;
+                        final newArrival = state.newArrival;
+                        final newShops = state.newShops;
+
+                        var story_reversed = List.of(story!.reversed);
+                        
+                        final lastStory = [];
+                        final restStory = [];
+
+                        for(int i = 0; i<3;i++){
+                          lastStory.add(story_reversed[i]);
+                        }
+
                         return Expanded(
                           child: SingleChildScrollView(
                             child: Column(
@@ -71,7 +83,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                 const SizedBox(height: 5,),
                                 trendingProducts(title: "Trending Products",productData: trendingProductsData,sizingInformation: sizingInformation),
                                 const SizedBox(height: 5,),
-                                productsStory(storyData: story,sizingInformation: sizingInformation),
+                                productsStory(storyData: story,sizingInformation: sizingInformation,length: 3,reverse: false),
+                                const SizedBox(height: 5,),
+                                trendingProducts(title: "New Arrivals",productData: newArrival,sizingInformation: sizingInformation),
+                                const SizedBox(height: 5,),
+                                productsStory(storyData: story_reversed,sizingInformation: sizingInformation,length: 3,reverse: true),
+                                const SizedBox(height: 5,),
+                                trendingSeller(title: "New Shops",sellerData: newShops,sizingInformation: sizingInformation),
+                                const SizedBox(height: 5,),
+                                productsStory(storyData: story,sizingInformation: sizingInformation,length: story.length,reverse: false),
                               ],
                             ),
                           ),
@@ -259,11 +279,12 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget productsStory({title,storyData, SizingInformation? sizingInformation}) {
+  Widget productsStory({title,storyData, SizingInformation? sizingInformation,length,reverse}) {
     return ListView.builder(
       scrollDirection: Axis.vertical,
-      itemCount: storyData.length,
+      itemCount: length,
       shrinkWrap: true,
+      reverse: reverse,
       padding: const EdgeInsets.symmetric(vertical: 5),
       physics: const ScrollPhysics(),
       itemBuilder: (context, index) => Container(
