@@ -10,6 +10,7 @@ class HomeBloc extends Bloc<HomeEvents, HomePageState> {
   final ApiProvider apiProvider;
 
   HomeBloc({required this.apiProvider}) : super(HomePageInitState());
+
   @override
   Stream<HomePageState> mapEventToState(HomeEvents event) async* {
     if(event is FetchFeaturedSeller){

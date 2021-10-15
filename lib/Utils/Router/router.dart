@@ -12,10 +12,7 @@ class AppRouter {
     switch (route!.name) {
       case '/':
         return MaterialPageRoute(
-              builder: (_) => BlocProvider(
-              create: (context) =>  _homeBloc,
-              child: const HomeScreen()
-            ),
+              builder: (_) => const HomeScreen(),
         );
       default:
         return null;
