@@ -54,6 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
             margin: EdgeInsets.fromLTRB(0, MediaQuery.of(context).padding.top+5, 0, 0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 BlocBuilder<HomeBloc, HomePageState>(
                     builder: (BuildContext context, HomePageState state) {
@@ -76,7 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         );
                       }
-                      return const CircularProgressIndicator();
+                      return const Center(child: CircularProgressIndicator());
                 }),
               ],
             ),
